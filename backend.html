@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Back end | OHODiary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Prompt:200,300,400,500,700">
+    <!-- Bulma Version 0.6.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" />
+    <!-- slider version 2.3.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/PgwSlider/2.3.1/pgwslider.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/uploadfile.css">
+
+    <!-- CKeditor version [basic, full, standard] -->
+    <script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
+    <script src="js/initCkeditor.js"></script>
+  </head>
+  <body>
+    <section class="hero is-info is-large">
+      <div class="hero-head">
+        <nav class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+              <a class="navbar-item hover-none-style">
+                <img src="images/icon/logo-index.png" alt="Logo" style="width: 83px; margin-left: -12px;">
+              </a>
+              <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <div id="navMenuTransparentExample" class="navbar-menu">
+              <div class="navbar-start">
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link brown padding__LeftRight" href="#!"> <!-- is-active -->
+                    Home
+                  </a>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link lightGreen padding__LeftRight" href="#!">
+                    OHO Calendar
+                  </a>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a href="#!" class="navbar-link orange padding__LeftRight">
+                    All Topics
+                  </a>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link blue padding__LeftRight" href="#!">
+                    OHO Topic
+                  </a>
+                </div>
+              </div>
+
+              <div id="navbarMenuHeroB" class="navbar-menu">
+                <div class="navbar-end">
+                  <span class="navbar-item">
+                    <img src="images/icon/profile.png" alt="" style="width: 30px;margin-top: 5px;margin-right: 10px">
+                    <a class="is-inverted">
+                      <p class="font__colorBlack"><u><b id="username">Tommy</b></u></p>
+                    </a>
+                  </span>
+                  <span class="navbar-item">
+                    <span class="line"></span>
+                    <a class="is-inverted">
+                      <img src="images/icon/Bell.png" alt="" style="width: 30px;margin-top: 5px;">
+                    </a>
+                  </span>
+                  <span class="navbar-item">
+                    <span class="line"></span>
+                    <a class="is-inverted" style="font-size: 26px;">
+                      <i class="fa fa-cog font__colorBlack" aria-hidden="true"></i>
+                    </a>
+                  </span>
+                  <span class="navbar-item">
+                    <span class="line"></span>
+                    <a class="is-inverted">
+                      <img src="images/language/thailand_square_sticker_640.png" alt="" style="width: 30px;margin-top: 5px;">
+                    </a>
+                  </span>
+                  <span class="navbar-item">
+                    <a class="is-inverted" style="font-size: 23px; margin-top: -5px">
+                      <i class="fa fa-search font__colorBlack" aria-hidden="true"></i>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <!-- <img src="https://cdn.beach-inspector.com/beach/1051/haad-yao-beach-58636054bd1c3.jpg?w=1900&h=550&fit=crop&q=50" alt=""> -->
+      <style>
+          .wrapperUpload {
+            height: 560px;
+            width: 100%;
+            background-color: #cccccc;
+            padding-top: 10em;
+          }
+          .uploadImage {
+            height: 156px;
+            width: 156px;
+            background-color: #7a7a7a;
+            border-radius: 10px;
+            margin: auto;
+          }
+          .fieldUpload {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+          }
+          #fieldInput {
+            position: absolute;
+            bottom: 30px;
+            font-family: 'Open Sans', 'Prompt', sans-serif;
+            width: 100%;
+            height: 60px;
+            border-radius: 0!important;
+            border: 1px;
+            color: #000000!important;
+            box-shadow: 1px 2px 2px 0px #777;
+          }
+          #fieldInput:focus { border: 1px solid #000000!important }
+          .fontNow {
+            font-family: 'Open Sans', 'Prompt', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #7a7a7a;
+            text-align: center;
+            margin-top: 20px;
+          }
+      </style>
+
+      <div class="wrapperUpload">
+        <div class="container">
+            <div class="uploadImage">
+                <label for="file-input">
+                    <img src="images/backend/upload.png" alt="">
+                </label>    
+                <input type="file" id="file-input" class="fieldUpload" />
+            </div>
+            <p class="fontNow">Select the size should be greater than 1680px high-definition large,<br/> such as the original camera</p>
+        </div>
+
+        <div class="container" style="position: relative; height: 186px">
+            <input id="fieldInput" type="text" placeholder="Write Main Title ..."/>
+        </div>
+      </div>
+    </section>
+
+
+    <style>
+        .marginTop40 {
+            margin-top: 40px;
+        }
+        .marginฺBottom200 {
+            margin-bottom: 200px;
+        }
+        .straightLine {
+            position: absolute;
+            height:25em;
+            width: 24px;
+            border-left: 1px solid #DADADA;
+        }
+        .font__bold {
+            font-weight: 700;
+            color: #999999;
+        }
+        .subfont__bold {
+            font-size: 10px;
+            font-weight: 700;
+            color: #999999;
+        }
+
+        .labelFeature {
+          position: absolute;
+          right: 21em;
+          width: 600px;
+          border-radius: 3px;
+          background: #ffffff;
+          padding: 20px;
+        }
+        .arrow_box:after {
+          left: 100%;
+          top: 18%;
+          border: solid transparent;
+          content: " ";
+          height: 0;
+          width: 0;
+          position: absolute;
+          pointer-events: none;
+          z-index: 3;
+        }
+        .arrow_box:after {
+          border-color: rgba(136, 183, 213, 0);
+          border-width: 20px;
+          margin-top: -30px;
+        }
+
+        #labelImage {
+          height: 250px;
+          top: .7em; 
+          border: 1px solid #197b31;
+          display: none;
+        }
+        .arrowColorGreen:after {
+          border-left-color: green;
+        }
+        #labelEmotion {
+          height: 250px;
+          top: 3.8em;
+          border: 1px solid #E7932A;
+          display: none;
+        }
+        .arrowColorOrange:after {
+          border-left-color: #E7932A;
+        }
+        #labelPara {
+          height: 400px;
+          top: 5.2em;
+          border: 1px solid #3893CB;
+          display: none;
+        }
+        .arrowColorBlue:after {
+          border-left-color: #3893CB;
+        }
+
+        .menuEmotion {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+        }
+        .menuEmotion > li {
+          float: left;
+        }
+        .menuEmotion > li a {
+          display: block;
+          color: #000;
+          text-align: center;
+          padding: 2px 16px;
+          text-decoration: none;
+        }
+        .menuEmotion > li a:focus {
+          border-radius: 5px;
+          background: #E7932A;
+          color: #fff;
+        }
+        
+        .contEmotion {  
+          height: 150px;
+          overflow-y: scroll;
+        }
+        #searchHeader {
+          font-family: 'Open Sans', 'Prompt', sans-serif;
+          width: 100%;
+          height: 60px;
+          border-radius: 0!important;
+          border: 1px solid #E4E4E4!important;
+          color: #000000!important;
+          background-color: #ffffff!important;
+        }
+
+        /* width */
+        .contEmotion::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        /* Track */
+        .contEmotion::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+        }
+        
+        /* Handle */
+        .contEmotion::-webkit-scrollbar-thumb {
+          background: #888; 
+        }
+
+        /* Handle on hover */
+        .contEmotion::-webkit-scrollbar-thumb:hover {
+          background: #555; 
+        }
+        
+    </style>
+    <section class="hero">
+        <div class="marginTop40"></div>
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8">
+                    <style>
+                      #des {
+                        -webkit-appearance: none;
+                        background-color: white;
+                        -webkit-rtl-ordering: logical;
+                        flex-direction: column;
+                        resize: none;
+                        cursor: text;
+                        width: 100%;
+                        white-space: none;
+                        word-wrap: none;
+                        border-width: 0px;
+                        border-style: solid;
+                        border-color: initial;
+                        border-image: initial;
+                        padding: 2px;
+                        overflow: initial;
+                      }
+                    </style>
+                    <textarea id="des">Write Your Diary ...</textarea>
+                    <textarea name="description" id="description">Write Your Diary ...</textarea>
+                </div>
+                
+                <div class="column is-4" style="position: relative">
+                    <div class="straightLine"></div>
+                    <div style="margin: 0 16px">
+                        <div class="columns" style="margin:0">
+                            <div class="column is-4" style="padding:0">
+                                <a onclick="insertImage()"><img src="images/icon/insertPicture.png" alt=""></a>
+                            </div>
+                            <div class="column is-8" style="padding:0">
+                                <div style="margin-top: 10px">
+                                    <a onclick="insertImage()" class="font__bold"> Insert Picture</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="labelImage" class="labelFeature">
+                          <div class="arrow_box arrowColorGreen"></div>
+                          <center>
+                            <button
+                              class="tooltip grean-lightgrean colorWhite"
+                              style="
+                                width: 50%;
+                                margin-top: 3em;
+                                cursor: pointer;
+                                font-size: 20px;
+                              "
+                              onclick="alert('Upload image')"
+                            >
+                              <b>Upload Your Image</b>
+                            </button>
+                            <p style="margin-top: 20px;font-size: 14px;">
+                              Select the size of the image should be greater than 100 * 50, the size should be less than 30M 
+                              Press the Ctrl key to support multiple selection, add up to 100 pictures at a time
+                            </p>
+                          </center>
+                        </div>
+
+                        <div class="columns" style="margin:0">
+                          <div class="column is-4" style="padding:0">
+                              <a onclick="insertEmotion()"><img src="images/icon/smiling.png" alt=""></a>
+                          </div>
+                          <div class="column is-8" style="padding:0">
+                            <div style="margin-top: 10px">
+                              <a onclick="insertEmotion()" class="font__bold"> Insert Emotion</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="labelEmotion" class="labelFeature">
+                          <div class="arrow_box arrowColorOrange"></div>
+                          <ul class="menuEmotion">
+                            <li><a href="#!common" class="active" onclick="openEmo('Common')">Common</a></li>
+                            <li><a href="#!charac" onclick="openEmo('Charac')">Character</a></li>
+                            <li><a href="#!travel" onclick="openEmo('Travel')">Travel</a></li>
+                          </ul>
+                          <hr style="margin-top: 10px" />
+                          <div class="contEmotion">
+                            <div id="Common" class="emoGroup">Common</div>
+                            <div id="Charac" class="emoGroup" style="display: none">
+                                <div id="emojicon_charac" style="width: 541px; font-size: 24px;"></div>
+                            </div>
+                            <div id="Travel" class="emoGroup" style="display: none">
+                                <div id="emojicon_travel" style="width: 541px; font-size: 24px;"></div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="columns" style="margin:0">
+                          <div class="column is-4" style="padding:0">
+                            <a onclick="insertPara()"><img src="images/icon/insertParagraph.png" alt=""></a>
+                          </div>
+                          <div class="column is-8" style="padding:0">
+                            <div style="margin-top: 10px">
+                              <a onclick="insertPara()" class="font__bold"> Insert Paragraph Title</a>
+                            </div>
+                          </div>
+                        </div>
+                        <style>
+                          /* #checkboxed {
+                            width: 25px!important;
+                            height: 25px!important;
+                            background-color: red!important;
+                            color: red!important;
+                          } */
+
+                          input[type="checkbox"] {
+                            background-color: #fff;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            height: 25px;
+                            padding-right: 10px;
+                            position: relative;
+                            width: 25px;
+                            box-shadow: 0 0 1px 2px inset #ccc;
+                            -webkit-appearance: none;
+                          }
+                          input[type="checkbox"]:before {
+                            content: '✘';
+                          }
+                          input[type="checkbox"]:checked:before {
+                            content: '✔';
+                            
+                          }
+                        </style>
+                        <div id="labelPara" class="labelFeature">
+                          <div class="arrow_box arrowColorBlue"></div>
+                          <input id="searchHeader" type="text" placeholder="Search Header ..." />
+                          <div style="margin: 1em 1em" ></div>
+                          <h6>Choose Your Style</h6>
+                          <div style="margin: 1em 1em" ></div>
+                          <label class="checkbox">
+                            <input type="checkbox" id="checkboxed">
+                            Remember me
+                          </label>
+                        </div>
+
+                        <hr>
+
+                        <div class="columns" style="margin:0">
+                          <div class="column is-4" style="padding:0">
+                              <a onclick="alert('Save Draft')"><img src="images/icon/saveDraft.png" alt=""></a>
+                          </div>
+                          <div class="column is-8" style="padding:0">
+                            <div style="margin-top: 10px">
+                              <a onclick="alert('Save Draft')" class="font__bold"> Save Draft</a>
+                              <p class="subfont__bold">14:14:48 Draft is saved automaticall</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <hr>
+
+                        <button class="tooltip grean-lightgrean colorWhite" style="width:100%;cursor: pointer;font-size: 20px;" onclick="alert('Post Travals')">
+                            <i class="fa fa-globe" aria-hidden="true"></i>  <b>Post Travals</b>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="marginฺBottom200"></div>
+    </section>
+  </body>
+</html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- firebase database -->
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script src="js/Initialize.js"></script>
+<script src="js/helper.js"></script>
+
+<!-- emoji icon -->
+<script src="lib/emojiComponent.js"></script>
+
+<script> CKEDITOR.inline( document.getElementById( 'description' ) ) </script>
+<script>
+  window.onload = () => {
+    Emojicon()
+  }
+
+  const getIcon = icon => icon.map(data => data)
+
+  const Emojicon = () => {
+    const moji = emoIcons.simple.split(' ')
+    const mojitra = emoIcons.travel.split(' ')
+    const dataStructionSimple = [], dataStructionTravel = []
+    getIcon(moji).forEach(element => dataStructionSimple.push(`<a href='#!' title='${element}'>${element}</a>`))
+    getIcon(mojitra).forEach(element => dataStructionTravel.push(`<a href='#!' title='${element}'>${element}</a>`))
+    
+    $('#emojicon_charac').html(dataStructionSimple)
+    $('#emojicon_charac a').click(function() {
+      var smiley = $(this).attr('title');
+      addToTextArea(smiley, 'des');
+    })
+    $('#emojicon_travel').html(dataStructionTravel)
+    $('#emojicon_travel a').click(function() {
+      var smiley = $(this).attr('title');
+      addToTextArea(smiley, 'des');
+    })
+  }
+
+  function addToTextArea(str, id) {
+    var TextArea = document.getElementById(id);
+    var val = TextArea.value;
+    var before = val.substring(0, TextArea.selectionStart);
+    var after = val.substring(TextArea.selectionEnd, val.length);
+    TextArea.value = before + str + after;
+  }
+
+  const insertImage = () => {
+    $('#labelImage').toggle();
+
+    $('#labelEmotion').css('display', 'none');
+    $('#labelPara').css('display', 'none');
+  }
+  const insertEmotion = () => {
+    $('#labelEmotion').toggle();
+
+    $('#labelImage').css('display', 'none');
+    $('#labelPara').css('display', 'none');
+  }
+  const insertPara = () => {
+    $('#labelPara').toggle();
+
+    $('#labelEmotion').css('display', 'none');
+    $('#labelImage').css('display', 'none');
+  }
+
+  const openEmo = (tage) => {
+    const x = document.getElementsByClassName("emoGroup");
+    for (let i = 0; i < x.length; i++) x[i].style.display = "none"
+    $(`#${tage}`).css('display', 'block')
+  }
+</script>
+
