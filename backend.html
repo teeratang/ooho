@@ -14,10 +14,6 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/uploadfile.css">
-
-    <!-- CKeditor version [basic, full, standard] -->
-    <script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
-    <script src="js/initCkeditor.js"></script>
   </head>
   <body>
     <section class="hero is-info is-large">
@@ -304,17 +300,20 @@
                         cursor: text;
                         width: 100%;
                         white-space: none;
-                        word-wrap: none;
+                        word-wrap: break-word;
                         border-width: 0px;
                         border-style: solid;
                         border-color: initial;
                         border-image: initial;
                         padding: 2px;
                         overflow: initial;
+                        font-size: 16px;
+                      }
+                      .hoverEmoji:hover {
+                        background-color: blue;
                       }
                     </style>
-                    <textarea id="des">Write Your Diary ...</textarea>
-                    <textarea name="description" id="description">Write Your Diary ...</textarea>
+                    <textarea placeholder="Write Your Diary ..." id="des" name="text" rows="4"></textarea>
                 </div>
                 
                 <div class="column is-4" style="position: relative">
@@ -345,6 +344,10 @@
                             >
                               <b>Upload Your Image</b>
                             </button>
+                            <!-- <label for="file-input">
+                              <img src="images/backend/upload.png" alt="">
+                            </label>
+                            <input type="file" id="file-input" class="fieldUpload" /> -->
                             <p style="margin-top: 20px;font-size: 14px;">
                               Select the size of the image should be greater than 100 * 50, the size should be less than 30M 
                               Press the Ctrl key to support multiple selection, add up to 100 pictures at a time
@@ -371,12 +374,14 @@
                           </ul>
                           <hr style="margin-top: 10px" />
                           <div class="contEmotion">
-                            <div id="Common" class="emoGroup">Common</div>
+                            <div id="Common" class="emoGroup">
+                                <div id="emojicon_common" style="width: 541px; font-size: 28px;"></div>
+                            </div>
                             <div id="Charac" class="emoGroup" style="display: none">
-                                <div id="emojicon_charac" style="width: 541px; font-size: 24px;"></div>
+                                <div id="emojicon_charac" style="width: 541px; font-size: 28px;"></div>
                             </div>
                             <div id="Travel" class="emoGroup" style="display: none">
-                                <div id="emojicon_travel" style="width: 541px; font-size: 24px;"></div>
+                                <div id="emojicon_travel" style="width: 541px; font-size: 28px;"></div>
                             </div>
                           </div>
                         </div>
@@ -467,39 +472,44 @@
 <!-- emoji icon -->
 <script src="lib/emojiComponent.js"></script>
 
-<script> CKEDITOR.inline( document.getElementById( 'description' ) ) </script>
+<!-- resize -->
+<script src="https://static.tumblr.com/maopbtg/oimmiw86r/jquery.autosize-min.js"></script>
+
 <script>
   window.onload = () => {
     Emojicon()
+    $('#des').autosize()
   }
 
   const getIcon = icon => icon.map(data => data)
+  const getSplit = icon => icon.split(' ')
+  const getConcatFunc = icon => getIcon(getSplit(icon))
+  const setTagEmaji = emoji => `  <a href='#!' class="hoverEmoji" title='${emoji}'>${emoji}</a>  `
 
   const Emojicon = () => {
-    const moji = emoIcons.simple.split(' ')
-    const mojitra = emoIcons.travel.split(' ')
-    const dataStructionSimple = [], dataStructionTravel = []
-    getIcon(moji).forEach(element => dataStructionSimple.push(`<a href='#!' title='${element}'>${element}</a>`))
-    getIcon(mojitra).forEach(element => dataStructionTravel.push(`<a href='#!' title='${element}'>${element}</a>`))
+    const dataStructionSimple = []
+    const dataStructionTravel = []
+    getConcatFunc(emoIcons.simple).forEach(emoji => dataStructionSimple.push(setTagEmaji(emoji)))
+    getConcatFunc(emoIcons.travel).forEach(emoji => dataStructionTravel.push(setTagEmaji(emoji)))
     
     $('#emojicon_charac').html(dataStructionSimple)
     $('#emojicon_charac a').click(function() {
-      var smiley = $(this).attr('title');
+      const smiley = $(this).attr('title')
       addToTextArea(smiley, 'des');
     })
     $('#emojicon_travel').html(dataStructionTravel)
     $('#emojicon_travel a').click(function() {
-      var smiley = $(this).attr('title');
+      const smiley = $(this).attr('title')
       addToTextArea(smiley, 'des');
     })
   }
 
-  function addToTextArea(str, id) {
-    var TextArea = document.getElementById(id);
-    var val = TextArea.value;
-    var before = val.substring(0, TextArea.selectionStart);
-    var after = val.substring(TextArea.selectionEnd, val.length);
-    TextArea.value = before + str + after;
+  const addToTextArea = (str, id) => {
+    const TextArea = document.getElementById(id)
+    const val = TextArea.value
+    const before = val.substring(0, TextArea.selectionStart)
+    const after = val.substring(TextArea.selectionEnd, val.length)
+    TextArea.value = before + str + after
   }
 
   const insertImage = () => {
