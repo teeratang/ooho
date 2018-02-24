@@ -446,11 +446,11 @@ td {
 
 .tooltip { /* สร้างกล่อง tooltip */
   position: relative;
- background: #fff;
- border: 0px solid #efefef;
- border-radius: 5px;
- box-shadow: 2px 2px 5px #ccc;
- padding: 10px;
+  background: #fff;
+  border: 0px solid #efefef;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #ccc;
+  padding: 10px;
 }
 
 
