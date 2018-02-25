@@ -139,7 +139,7 @@
             <div class="uploadImage">
                 <label for="file-input">
                     <img src="images/backend/upload.png" alt="">
-                </label>    
+                </label>
                 <input type="file" id="file-input" class="fieldUpload" />
             </div>
             <p class="fontNow">Select the size should be greater than 1680px high-definition large,<br/> such as the original camera</p>
@@ -202,7 +202,7 @@
 
         #labelImage {
           height: 250px;
-          top: .7em; 
+          top: .7em;
           border: 1px solid #197b31;
           display: none;
         }
@@ -249,8 +249,8 @@
           background: #E7932A;
           color: #fff;
         }
-        
-        .contEmotion {  
+
+        .contEmotion {
           height: 150px;
           overflow-y: scroll;
         }
@@ -271,19 +271,19 @@
 
         /* Track */
         .contEmotion::-webkit-scrollbar-track {
-          background: #f1f1f1; 
+          background: #f1f1f1;
         }
-        
+
         /* Handle */
         .contEmotion::-webkit-scrollbar-thumb {
-          background: #888; 
+          background: #888;
         }
 
         /* Handle on hover */
         .contEmotion::-webkit-scrollbar-thumb:hover {
-          background: #555; 
+          background: #555;
         }
-        
+
     </style>
     <section class="hero">
         <div class="marginTop40"></div>
@@ -315,7 +315,7 @@
                     </style>
                     <textarea placeholder="Write Your Diary ..." id="des" name="text" rows="4"></textarea>
                 </div>
-                
+
                 <div class="column is-4" style="position: relative">
                     <div class="straightLine"></div>
                     <div style="margin: 0 16px">
@@ -349,7 +349,7 @@
                             </label>
                             <input type="file" id="file-input" class="fieldUpload" /> -->
                             <p style="margin-top: 20px;font-size: 14px;">
-                              Select the size of the image should be greater than 100 * 50, the size should be less than 30M 
+                              Select the size of the image should be greater than 100 * 50, the size should be less than 30M
                               Press the Ctrl key to support multiple selection, add up to 100 pictures at a time
                             </p>
                           </center>
@@ -420,7 +420,7 @@
                           }
                           input[type="checkbox"]:checked:before {
                             content: '✔';
-                            
+
                           }
                         </style>
                         <div id="labelPara" class="labelFeature">
@@ -448,7 +448,7 @@
                             </div>
                           </div>
                         </div>
-                        
+
                         <hr>
 
                         <button class="tooltip grean-lightgrean colorWhite" style="width:100%;cursor: pointer;font-size: 20px;" onclick="alert('Post Travals')">
@@ -491,7 +491,7 @@
     const dataStructionTravel = []
     getConcatFunc(emoIcons.simple).forEach(emoji => dataStructionSimple.push(setTagEmaji(emoji)))
     getConcatFunc(emoIcons.travel).forEach(emoji => dataStructionTravel.push(setTagEmaji(emoji)))
-    
+
     $('#emojicon_charac').html(dataStructionSimple)
     $('#emojicon_charac a').click(function() {
       const smiley = $(this).attr('title')
@@ -537,4 +537,3 @@
     $(`#${tage}`).css('display', 'block')
   }
 </script>
-
