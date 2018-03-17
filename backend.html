@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/uploadfile.css">
+
+    <!-- cdeditor 4.9.0 -->
+    <script src="https://cdn.ckeditor.com/4.9.0/basic/ckeditor.js"></script>
   </head>
   <body>
     <section class="hero is-info is-large">
@@ -313,7 +316,10 @@
                         background-color: blue;
                       }
                     </style>
-                    <textarea placeholder="Write Your Diary ..." id="des" name="text" rows="4"></textarea>
+                    <textarea placeholder="Write Your Diary ..." id="des" rows="4"></textarea>
+                      <textarea placeholder="Write Your Diary ..." id="des" name="editor1" rows="4">
+                      <b>beer</b>
+                    </textarea>
                 </div>
 
                 <div class="column is-4" style="position: relative">
@@ -375,13 +381,13 @@
                           <hr style="margin-top: 10px" />
                           <div class="contEmotion">
                             <div id="Common" class="emoGroup">
-                                <div id="emojicon_common" style="width: 541px; font-size: 28px;"></div>
+                                <div id="emojicon_common" style="width: 440px; font-size: 28px;"></div>
                             </div>
                             <div id="Charac" class="emoGroup" style="display: none">
-                                <div id="emojicon_charac" style="width: 541px; font-size: 28px;"></div>
+                                <div id="emojicon_charac" style="width: 440px; font-size: 28px;"></div>
                             </div>
                             <div id="Travel" class="emoGroup" style="display: none">
-                                <div id="emojicon_travel" style="width: 541px; font-size: 28px;"></div>
+                                <div id="emojicon_travel" style="width: 440px; font-size: 28px;"></div>
                             </div>
                           </div>
                         </div>
@@ -451,7 +457,7 @@
 
                         <hr>
 
-                        <button class="tooltip grean-lightgrean colorWhite" style="width:100%;cursor: pointer;font-size: 20px;" onclick="alert('Post Travals')">
+                        <button class="tooltip grean-lightgrean colorWhite" style="width:100%;cursor: pointer;font-size: 20px;" onclick="_onSaveContent()">
                             <i class="fa fa-globe" aria-hidden="true"></i>  <b>Post Travals</b>
                         </button>
                     </div>
@@ -462,11 +468,8 @@
     </section>
   </body>
 </html>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<!-- firebase database -->
-<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-<script src="js/Initialize.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="js/helper.js"></script>
 
 <!-- emoji icon -->
@@ -476,6 +479,9 @@
 <script src="https://static.tumblr.com/maopbtg/oimmiw86r/jquery.autosize-min.js"></script>
 
 <script>
+  CKEDITOR.disableAutoInline = true;
+  CKEDITOR.inline( 'editor1' );
+
   window.onload = () => {
     Emojicon()
     $('#des').autosize()
@@ -535,5 +541,10 @@
     const x = document.getElementsByClassName("emoGroup");
     for (let i = 0; i < x.length; i++) x[i].style.display = "none"
     $(`#${tage}`).css('display', 'block')
+  }
+
+  const _onSaveContent = () => {
+    const data = document.getElementById('des').value
+    alert(data)
   }
 </script>
