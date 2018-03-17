@@ -1,0 +1,28 @@
+{
+  "name": "ooho",
+  "version": "1.0.0",
+  "description": "Ooho Project",
+  "main": "index.html",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "serve -p 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sittisuk/ooho.git"
+  },
+  "author": "sittisuk",
+  "license": "ISC",
+  "dependencies": {
+    "auth0-js": "^9.3.3"
+  },
+  "bugs": {
+    "url": "https://github.com/sittisuk/ooho/issues"
+  },
+  "homepage": "https://sittisuk.github.io/ooho/",
+  "devDependencies": {
+    "serve": "^5.1.5"
+  }
+}
