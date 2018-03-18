@@ -561,10 +561,11 @@
   </body>
 </html>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PgwSlider/2.3.1/pgwslider.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
-    alert('sittisuk author')
+    beginFetching();
     var pgwSlider = $('.pgwSlider').pgwSlider();
     pgwSlider.reload({
       maxHeight : 550,
