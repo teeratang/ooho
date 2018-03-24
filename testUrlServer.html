@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>test</title>
+  </head>
+
+  <body>
+    <h1>Testkk</h1>
+  </body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+function loaddataset(){
+  $.ajax({
+    url: 'https://oohoserver.000webhostapp.com/fetch.php',
+    type: 'GET',
+    data:'getdata',
+    success: function(data) {
+      console.log(data);
+    },
+    dataType: 'json'
+  });
+}
+loaddataset();
+</script>

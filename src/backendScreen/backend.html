@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" />
     <!-- slider version 2.3.1 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/PgwSlider/2.3.1/pgwslider.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/uploadfile.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/theme.css">
+    <link rel="stylesheet" href="../../css/uploadfile.css">
+    <link rel="stylesheet" href="backendCss.css">
 
     <!-- cdeditor 4.9.0 -->
     <script src="https://cdn.ckeditor.com/4.9.0/basic/ckeditor.js"></script>
@@ -25,7 +26,7 @@
           <div class="container">
             <div class="navbar-brand">
               <a class="navbar-item hover-none-style">
-                <img src="images/icon/logo-index.png" alt="Logo" style="width: 83px; margin-left: -12px;">
+                <img src="../../images/icon/logo-index.png" alt="Logo" style="width: 83px; margin-left: -12px;">
               </a>
               <span class="navbar-burger burger" data-target="navbarMenuHeroB">
                 <span></span>
@@ -60,7 +61,7 @@
               <div id="navbarMenuHeroB" class="navbar-menu">
                 <div class="navbar-end">
                   <span class="navbar-item">
-                    <img src="images/icon/profile.png" alt="" style="width: 30px;margin-top: 5px;margin-right: 10px">
+                    <img src="../../images/icon/profile.png" alt="" style="width: 30px;margin-top: 5px;margin-right: 10px">
                     <a class="is-inverted">
                       <p class="font__colorBlack"><u><b id="username">Tommy</b></u></p>
                     </a>
@@ -68,7 +69,7 @@
                   <span class="navbar-item">
                     <span class="line"></span>
                     <a class="is-inverted">
-                      <img src="images/icon/Bell.png" alt="" style="width: 30px;margin-top: 5px;">
+                      <img src="../../images/icon/Bell.png" alt="" style="width: 30px;margin-top: 5px;">
                     </a>
                   </span>
                   <span class="navbar-item">
@@ -80,7 +81,7 @@
                   <span class="navbar-item">
                     <span class="line"></span>
                     <a class="is-inverted">
-                      <img src="images/language/thailand_square_sticker_640.png" alt="" style="width: 30px;margin-top: 5px;">
+                      <img src="../../images/language/thailand_square_sticker_640.png" alt="" style="width: 30px;margin-top: 5px;">
                     </a>
                   </span>
                   <span class="navbar-item">
@@ -96,52 +97,13 @@
       </div>
 
       <!-- <img src="https://cdn.beach-inspector.com/beach/1051/haad-yao-beach-58636054bd1c3.jpg?w=1900&h=550&fit=crop&q=50" alt=""> -->
-      <style>
-          .wrapperUpload {
-            height: 560px;
-            width: 100%;
-            background-color: #cccccc;
-            padding-top: 10em;
-          }
-          .uploadImage {
-            height: 156px;
-            width: 156px;
-            background-color: #7a7a7a;
-            border-radius: 10px;
-            margin: auto;
-          }
-          .fieldUpload {
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-          }
-          #fieldInput {
-            position: absolute;
-            bottom: 30px;
-            font-family: 'Open Sans', 'Prompt', sans-serif;
-            width: 100%;
-            height: 60px;
-            border-radius: 0!important;
-            border: 1px;
-            color: #000000!important;
-            box-shadow: 1px 2px 2px 0px #777;
-          }
-          #fieldInput:focus { border: 1px solid #000000!important }
-          .fontNow {
-            font-family: 'Open Sans', 'Prompt', sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            color: #7a7a7a;
-            text-align: center;
-            margin-top: 20px;
-          }
-      </style>
+
 
       <div class="wrapperUpload">
         <div class="container">
             <div class="uploadImage">
                 <label for="file-input">
-                    <img src="images/backend/upload.png" alt="">
+                    <img src="../../images/backend/upload.png" alt="">
                 </label>
                 <input type="file" id="file-input" class="fieldUpload" />
             </div>
@@ -154,168 +116,11 @@
       </div>
     </section>
 
-
-    <style>
-        .marginTop40 {
-            margin-top: 40px;
-        }
-        .marginฺBottom200 {
-            margin-bottom: 200px;
-        }
-        .straightLine {
-            position: absolute;
-            height:25em;
-            width: 24px;
-            border-left: 1px solid #DADADA;
-        }
-        .font__bold {
-            font-weight: 700;
-            color: #999999;
-        }
-        .subfont__bold {
-            font-size: 10px;
-            font-weight: 700;
-            color: #999999;
-        }
-
-        .labelFeature {
-          position: absolute;
-          right: 21em;
-          width: 600px;
-          border-radius: 3px;
-          background: #ffffff;
-          padding: 20px;
-        }
-        .arrow_box:after {
-          left: 100%;
-          top: 18%;
-          border: solid transparent;
-          content: " ";
-          height: 0;
-          width: 0;
-          position: absolute;
-          pointer-events: none;
-          z-index: 3;
-        }
-        .arrow_box:after {
-          border-color: rgba(136, 183, 213, 0);
-          border-width: 20px;
-          margin-top: -30px;
-        }
-
-        #labelImage {
-          height: 250px;
-          top: .7em;
-          border: 1px solid #197b31;
-          display: none;
-        }
-        .arrowColorGreen:after {
-          border-left-color: green;
-        }
-        #labelEmotion {
-          height: 250px;
-          top: 3.8em;
-          border: 1px solid #E7932A;
-          display: none;
-        }
-        .arrowColorOrange:after {
-          border-left-color: #E7932A;
-        }
-        #labelPara {
-          height: 400px;
-          top: 5.2em;
-          border: 1px solid #3893CB;
-          display: none;
-        }
-        .arrowColorBlue:after {
-          border-left-color: #3893CB;
-        }
-
-        .menuEmotion {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-        }
-        .menuEmotion > li {
-          float: left;
-        }
-        .menuEmotion > li a {
-          display: block;
-          color: #000;
-          text-align: center;
-          padding: 2px 16px;
-          text-decoration: none;
-        }
-        .menuEmotion > li a:focus {
-          border-radius: 5px;
-          background: #E7932A;
-          color: #fff;
-        }
-
-        .contEmotion {
-          height: 150px;
-          overflow-y: scroll;
-        }
-        #searchHeader {
-          font-family: 'Open Sans', 'Prompt', sans-serif;
-          width: 100%;
-          height: 60px;
-          border-radius: 0!important;
-          border: 1px solid #E4E4E4!important;
-          color: #000000!important;
-          background-color: #ffffff!important;
-        }
-
-        /* width */
-        .contEmotion::-webkit-scrollbar {
-          width: 10px;
-        }
-
-        /* Track */
-        .contEmotion::-webkit-scrollbar-track {
-          background: #f1f1f1;
-        }
-
-        /* Handle */
-        .contEmotion::-webkit-scrollbar-thumb {
-          background: #888;
-        }
-
-        /* Handle on hover */
-        .contEmotion::-webkit-scrollbar-thumb:hover {
-          background: #555;
-        }
-
-    </style>
     <section class="hero">
         <div class="marginTop40"></div>
         <div class="container">
             <div class="columns">
                 <div class="column is-8">
-                    <style>
-                      #des {
-                        -webkit-appearance: none;
-                        background-color: white;
-                        -webkit-rtl-ordering: logical;
-                        flex-direction: column;
-                        resize: none;
-                        cursor: text;
-                        width: 100%;
-                        white-space: none;
-                        word-wrap: break-word;
-                        border-width: 0px;
-                        border-style: solid;
-                        border-color: initial;
-                        border-image: initial;
-                        padding: 2px;
-                        overflow: initial;
-                        font-size: 16px;
-                      }
-                      .hoverEmoji:hover {
-                        background-color: blue;
-                      }
-                    </style>
                     <!-- <textarea placeholder="Write Your Diary ..." id="des" rows="4"></textarea> -->
                     <textarea placeholder="Write Your Diary ..." id="des" name="editor1" rows="4">Ooho Project 😀 😁 😂 🤣 😃 😄 😅 😆 หกดรำสหกด เรื่องของเรามีมากมาย เรื่องที่อยากเล่าก็คือ เรื่องมันมีอยู่ว่า เรื่องมันก็คือเรื่องที่าากดนไรเรื่กงเรื่องหกาดนำเดือนนเยสสนอยาก เรื่องพที่เรหกดสนำาหดนสิทธิ์สักดิ์ ชาติรษรหกดำรสหกรเรื่องหกด รเดียวพคือ เดียวเรื่องกดหรรเเรื่องเดียวคื เรื่องเคือเรื่งอเรคืหกด เดืียวฟกดาาหนนำาเพื่อนกที่ว่ นั้นคือ ที่หกสนำยไำพนนหกดาน เรื่หกดงรำนไำพสนไาำสนหารำาาเพื่ยหดเรื่อกด เรื่หกดงกรำสไนเดืี่ยว เรืหกดงนานหกดรไำพสนๆารเรื่อง เดียวเพื่นอารหกดความกหดรนไำพรรหกสรเรื่องหกทรเย เดื่อนเที่เยหกดวำนไำพาหกดราำน หกดารำสสสสหกดรเรื่องที่เดยวหกดรเรีเนสการำาเ่หนาำนการเื่องาดรำสไรหสดฟรำเรื่องหกาำร  เรือยหกดรสรำพไนำาากดนนหสสฟรเืหกดงำนากนไาเนาดือสหกรำาหสฟนากนำารเสหงายเาเรื่องหรำสนรไรไพำสนหกดารฟหกดสนสำหกดเรืหกดงสปแอรกสหกดนเรหกดืเหกดงฟกรหกสดหการเืหกดสสอปกากดรหกสเ</textarea>
                 </div>
@@ -325,7 +130,7 @@
                     <div style="margin: 0 16px">
                         <div class="columns" style="margin:0">
                             <div class="column is-4" style="padding:0">
-                                <a onclick="insertImage()"><img src="images/icon/insertPicture.png" alt=""></a>
+                                <a onclick="insertImage()"><img src="../../images/icon/insertPicture.png" alt=""></a>
                             </div>
                             <div class="column is-8" style="padding:0">
                                 <div style="margin-top: 10px">
@@ -349,7 +154,7 @@
                               <b>Upload Your Image</b>
                             </button>
                             <!-- <label for="file-input">
-                              <img src="images/backend/upload.png" alt="">
+                              <img src="../../images/backend/upload.png" alt="">
                             </label>
                             <input type="file" id="file-input" class="fieldUpload" /> -->
                             <p style="margin-top: 20px;font-size: 14px;">
@@ -361,7 +166,7 @@
 
                         <div class="columns" style="margin:0">
                           <div class="column is-4" style="padding:0">
-                              <a onclick="insertEmotion()"><img src="images/icon/smiling.png" alt=""></a>
+                              <a onclick="insertEmotion()"><img src="../../images/icon/smiling.png" alt=""></a>
                           </div>
                           <div class="column is-8" style="padding:0">
                             <div style="margin-top: 10px">
@@ -392,7 +197,7 @@
 
                         <div class="columns" style="margin:0">
                           <div class="column is-4" style="padding:0">
-                            <a onclick="insertPara()"><img src="images/icon/insertParagraph.png" alt=""></a>
+                            <a onclick="insertPara()"><img src="../../images/icon/insertParagraph.png" alt=""></a>
                           </div>
                           <div class="column is-8" style="padding:0">
                             <div style="margin-top: 10px">
@@ -400,33 +205,6 @@
                             </div>
                           </div>
                         </div>
-                        <style>
-                          /* #checkboxed {
-                            width: 25px!important;
-                            height: 25px!important;
-                            background-color: red!important;
-                            color: red!important;
-                          } */
-
-                          input[type="checkbox"] {
-                            background-color: #fff;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            height: 25px;
-                            padding-right: 10px;
-                            position: relative;
-                            width: 25px;
-                            box-shadow: 0 0 1px 2px inset #ccc;
-                            -webkit-appearance: none;
-                          }
-                          input[type="checkbox"]:before {
-                            content: '✘';
-                          }
-                          input[type="checkbox"]:checked:before {
-                            content: '✔';
-
-                          }
-                        </style>
                         <div id="labelPara" class="labelFeature">
                           <div class="arrow_box arrowColorBlue"></div>
                           <input id="searchHeader" type="text" placeholder="Search Header ..." />
@@ -443,7 +221,7 @@
 
                         <div class="columns" style="margin:0">
                           <div class="column is-4" style="padding:0">
-                              <a onclick="alert('Save Draft')"><img src="images/icon/saveDraft.png" alt=""></a>
+                              <a onclick="alert('Save Draft')"><img src="../../images/icon/saveDraft.png" alt=""></a>
                           </div>
                           <div class="column is-8" style="padding:0">
                             <div style="margin-top: 10px">
@@ -468,15 +246,14 @@
 </html>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="js/helper.js"></script>
+<script src="../../js/helper.js"></script>
 
 <!-- emoji icon -->
-<script src="lib/emojiComponent.js"></script>
+<script src="../../lib/emojiComponent.js"></script>
 
 <!-- resize -->
 <script src="https://static.tumblr.com/maopbtg/oimmiw86r/jquery.autosize-min.js"></script>
-
-<script>
+<script type="text/javascript">
   CKEDITOR.disableAutoInline = true;
   CKEDITOR.inline( 'editor1' );
 
