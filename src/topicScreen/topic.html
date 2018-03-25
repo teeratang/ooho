@@ -496,7 +496,8 @@
       type: 'GET',
       dataType: 'json',
       success: function(data) {
-        document.getElementById('contentId').innerHTML = data[0]['content']
+        const arr = data[0]['content']+data[0]['style']
+        document.getElementById('contentId').innerHTML = arr
       },
     });
   }

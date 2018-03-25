@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="backendCss.css">
 
     <!-- cdeditor 4.9.0 -->
-    <script src="https://cdn.ckeditor.com/4.9.0/basic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.9.0/full-all/ckeditor.js"></script>
   </head>
   <body>
     <section class="hero is-info is-large">
@@ -107,7 +107,7 @@
         </div>
 
         <div class="container" style="position: relative; height: 186px">
-            <input id="fieldInput" type="text" placeholder="Write Main Title ..."/>
+            <input id="fieldInput" type="text" placeholder="Write Main Title ..." value="testing"/>
         </div>
       </div>
     </section>
@@ -116,9 +116,10 @@
         <div class="marginTop40"></div>
         <div class="container">
             <div class="columns">
+                
                 <div class="column is-8">
                     <!-- <textarea placeholder="Write Your Diary ..." id="des" rows="4"></textarea> -->
-                    <textarea placeholder="Write Your Diary ..." id="des" name="editor1" rows="4">Ooho Projectหกดรำสหกด เรื่องของเรามีมากมาย เรื่องที่อยากเล่าก็คือ เรื่องมันมีอยู่ว่า เรื่องมันก็คือเรื่องที่าากดนไรเรื่กงเรื่องหกาดนำเดือนนเยสสนอยาก เรื่องพที่เรหกดสนำาหดนสิทธิ์สักดิ์ ชาติรษรหกดำรสหกรเรื่องหกด รเดียวพคือ เดียวเรื่องกดหรรเเรื่องเดียวคื เรื่องเคือเรื่งอเรคืหกด เดืียวฟกดาาหนนำาเพื่อนกที่ว่ นั้นคือ ที่หกสนำยไำพนนหกดาน เรื่หกดงรำนไำพสนไาำสนหารำาาเพื่ยหดเรื่อกด เรื่หกดงกรำสไนเดืี่ยว เรืหกดงนานหกดรไำพสนๆารเรื่อง เดียวเพื่นอารหกดความกหดรนไำพรรหกสรเรื่องหกทรเย เดื่อนเที่เยหกดวำนไำพาหกดราำน หกดารำสสสสหกดรเรื่องที่เดยวหกดรเรีเนสการำาเ่หนาำนการเื่องาดรำสไรหสดฟรำเรื่องหกาำร  เรือยหกดรสรำพไนำาากดนนหสสฟรเืหกดงำนากนไาเนาดือสหกรำาหสฟนากนำารเสหงายเาเรื่องหรำสนรไรไพำสนหกดารฟหกดสนสำหกดเรืหกดงสปแอรกสหกดนเรหกดืเหกดงฟกรหกสดหการเืหกดสสอปกากดรหกสเ</textarea>
+                    <textarea id="des" name="editor1" rows="4">sdfsdf</textarea>
                 </div>
 
                 <div class="column is-4" style="position: relative">
@@ -251,7 +252,31 @@
 <script src="https://static.tumblr.com/maopbtg/oimmiw86r/jquery.autosize-min.js"></script>
 <script type="text/javascript">
   CKEDITOR.disableAutoInline = true;
-  CKEDITOR.inline( 'editor1' );
+  CKEDITOR.inline( 'editor1', {
+    contentsCss: `
+    .hoverClass {
+      font-size: 16px;
+    }
+    .hoverClass:hover {
+      font-size: 30px;
+    }`,
+    toolbar: [
+      { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', '-' ] },
+      { name: 'paragraph', items: [ 'Outdent', 'Indent', '-' ] },
+      { name: 'links', items: [ 'Link', 'Unlink'] },
+      { name: 'insert', items: [ 'Smiley' ] },
+      { name: 'styles', items: [ 'Styles'  ] },
+		],
+    stylesSet: [
+        { 
+          name: 'hoverClass',
+          element: 'p',
+          attributes: {
+            'class': 'hoverClass'
+          } 
+        },
+      ],
+  } );
 
   window.onload = () => {
     Emojicon()
@@ -315,24 +340,29 @@
   }
 
   const _onSaveContent = () => {
-    const a = document.getElementById('des').value
+    const data = {
+      a: valueId('fieldInput'),
+      b: CKEDITOR.instances.des.getData(),
+      style: `<style>
+                .hoverClass {
+                  font-size: 16px;
+                }
+                .hoverClass:hover {
+                  font-size: 30px;
+                }
+              </style>`
+    }
     $.ajax({
       url: 'http://oohoserver.000webhostapp.com/addTopic.php',
       type: 'POST',
-      data: a,
-      success: function(data) {
-        console.log(data)
+      data: data,
+      success: function(result) {
+        console.log(result)
       },
     })
-    // .done((dd) => {
-    //   console.log(dd)
-    // })
-    
-    alert('button')
-    
-    //   .statusCode({
-    //     404: function() { console.log( 'Unauthorized' ); },
-    //     200: function() { console.log( 'OK!'); }
-    // });
+    .statusCode({
+      401: function() { console.log( 'Unauthorized' ); },
+      200: function() { console.log( 'OK!'); }
+    });
   }
 </script>
