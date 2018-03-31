@@ -489,6 +489,9 @@ hr.hr {
   margin-left: -6px!important;
   font-size: 15px!important;
 }
+.card-bottom-hide {
+  display: none;
+}
 
 /*----- #Befor Footer -----*/
 .hightlight{

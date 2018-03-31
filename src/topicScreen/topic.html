@@ -482,13 +482,17 @@
     document.getElementById('foo').innerHTML = Footer()
   }
 
-  $( ".card" ).hover(
-    function() {
-      $( this ).find( ".card-bottom-hide" ).css('display','block');
-    }, function() {
-      $( this ).find( ".card-bottom-hide" ).css('display','none');
-    }
-  );
+  $('.share').click(function(){
+      alert('ok')
+    })
+
+  // $( ".card" ).hover(
+  //   function() {
+  //     $( this ).find( ".card-bottom-hide" ).css('display','block');
+  //   }, function() {
+  //     $( this ).find( ".card-bottom-hide" ).css('display','none');
+  //   }
+  // );
 
   const loaddataset = () => {
     $.ajax({
