@@ -107,7 +107,7 @@
         </div>
 
         <div class="container" style="position: relative; height: 186px">
-            <input id="fieldInput" type="text" placeholder="Write Main Title ..." value="testing"/>
+            <input id="fieldInput" type="text" placeholder="Write Main Title ..." value="โคโยตี้ไลท์ รวมมิตร โปรเจ็กต์เบลอแอปเปิล"/>
         </div>
       </div>
     </section>
@@ -460,16 +460,7 @@
   const _onSaveContent = () => {
     const data = {
       a: valueId('fieldInput'),
-      b: CKEDITOR.instances.des.getData(),
-      style: `<style>
-                .hoverClass {
-                  font-size: 16px;
-                }
-                .hoverClass:hover {
-                  font-size: 30px;
-                }
-              </style>
-              `
+      b: CKEDITOR.instances.des.getData()
     }
     $.ajax({
       url: 'http://oohoserver.000webhostapp.com/addTopic.php',

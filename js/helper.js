@@ -2,6 +2,8 @@ const valueId = (id) => document.getElementById(id).value;
 
 const resetId = (id) => document.getElementById(id).value = '';
 
+const getElement = (id) => document.getElementById(id);
+
 const locationHref = (id) => window.location.href = id;
 
 const Footer = () => {
