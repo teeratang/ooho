@@ -114,8 +114,8 @@
                     </div>
                     <div class="column is-6" style="margin-bottom: -70px;">
                       <div class="topic_headerText">
-                        <div class="topic topic_headerTop">
-                            โคโยตี้ไลท์ รวมมิตร โปรเจ็กต์เบลอแอปเปิล 
+                        <div class="topic topic_headerTop" id="titleID">
+                            loading...
                         </div>
                         <div class=" topic topic_headerBottom">
                           <u>Tommy โลกสีเทา</u> • <i class="fa fa-users" aria-hidden="true"></i>
@@ -129,11 +129,11 @@
                               color: #747674;
                               font-size: 14px;
                               font-weight: 400;
-                              margin-left: 1px;">22 / 10 / 2017 10.33 น.</span>
+                              margin-left: 1px;" id="createDateID">loading...</span>
 
                           <span style="font-weight: 500">
                               <img src="../../images/icon/view-icon.png" style="width: 70px;"/>
-                              <span style="position: relative;bottom: 6px;">20,115</span>
+                              <span style="position: relative;bottom: 6px;" id="viewCountID">loading...</span>
                           </span>
                         </div>
                       </div>
@@ -153,19 +153,19 @@
                         <div class="column is-5">
                           <div class="boxing">
                             <img src="../../images/icon/start-travel-icon.png" class="img" />
-                            <span class="content">22 / 10 / 2017</span>
+                            <span class="content" id="startTravelID">loading...</span>
                           </div>
                         </div>
                         <div class="column is-4">
                           <div class="boxing">
                             <img src="../../images/icon/travel-days-icon.png" class="img" />
-                            <span class="content">5 Days</span>
+                            <span class="content" id="travelDayID">loading...</span>
                           </div>
                         </div>
                         <div class="column is-2">
                           <div class="boxing">
                             <img src="../../images/icon/people-icon.png" class="img" />
-                            <span class="content" style="right: -50px">Friends</span>
+                            <span class="content" id="whoWithID" style="right: -50px">loading</span>
                           </div>
                         </div>                        
                       </div>
@@ -482,13 +482,17 @@
     document.getElementById('foo').innerHTML = Footer()
   }
 
-  $( ".card" ).hover(
-    function() {
-      $( this ).find( ".card-bottom-hide" ).css('display','block');
-    }, function() {
-      $( this ).find( ".card-bottom-hide" ).css('display','none');
-    }
-  );
+  $('.share').click(function(){
+      alert('ok')
+    })
+
+  // $( ".card" ).hover(
+  //   function() {
+  //     $( this ).find( ".card-bottom-hide" ).css('display','block');
+  //   }, function() {
+  //     $( this ).find( ".card-bottom-hide" ).css('display','none');
+  //   }
+  // );
 
   const loaddataset = () => {
     $.ajax({
@@ -496,7 +500,15 @@
       type: 'GET',
       dataType: 'json',
       success: function(data) {
-        document.getElementById('contentId').innerHTML = data[0]['content']
+        console.log(data)
+        const arr = data[0];
+        getElement('contentId').innerHTML = arr['content']
+        getElement('titleID').innerHTML = arr['title']
+        getElement('whoWithID').innerHTML = arr['whoWith']
+        getElement('startTravelID').innerHTML = arr['startTravel']
+        getElement('travelDayID').innerHTML = arr['travelDay']
+        getElement('createDateID').innerHTML = arr['createDate']
+        getElement('viewCountID').innerHTML = arr['viewCount']
       },
     });
   }
