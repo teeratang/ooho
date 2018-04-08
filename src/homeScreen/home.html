@@ -171,35 +171,7 @@
         </div>
   
         <div class="column is-9">
-          <div class="card">
-            <div class="card-image">
-              <h2 class="textHeader">7 Oct 2017</h2>
-              <figure class="image is-4by3">
-                <img src="http://www.thaifly.com/image/data/picture_acticle/picture_acticle_Australia/thaifly_Australia-7.jpg" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-  
-              <div class="content">
-                <h1>Lorem</h1>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                <a href="#">#css</a> <a href="#">#responsive</a>
-                <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                <p>
-                  <span style="font-weight: 700">
-                    <img src="../../images/icon/view-icon.png"/>
-                    <span style="position: relative;bottom: 6px;">20,115</span>
-                  </span>
-                  <span style="font-weight: 700">
-                    <img src="../../images/icon/like-icon.png"/>
-                    <span style="position: relative;bottom: 10px;">1,480</span>
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
+          <div id="elementCard"></div>
   
           <div class="card">
             <div class="card-image">
@@ -242,5 +214,66 @@
 <script type="text/javascript">
   window.onload = () => {
     document.getElementById('foo').innerHTML = Footer()
+    getPostData()
+    // const a = new Number(-10)
+    // console.log(a.formatMoney('.', ','))
+  }
+
+  const getElementCardFunc = (id, title, viewCount, startTravel) => `
+    <div class="card">
+      <div class="card-image">
+        <h2 class="textHeader">${getFormatDate(startTravel)}</h2>
+        <figure class="image is-4by3">
+          <img src="http://www.thaifly.com/image/data/picture_acticle/picture_acticle_Australia/thaifly_Australia-7.jpg" alt="Placeholder image">
+        </figure>
+      </div>
+      <div class="card-content">
+
+        <div class="content">
+          <h1>${title}</h1>
+          null
+          <br>
+          <time datetime="2016-1-1">null</time>
+          <p>
+            <span style="font-weight: 700">
+              <img src="../../images/icon/view-icon.png"/>
+              <span style="position: relative;bottom: 6px;">${getFormatNumber(viewCount)}</span>
+            </span>
+            <span style="font-weight: 700">
+              <img src="../../images/icon/like-icon.png"/>
+              <span style="position: relative;bottom: 10px;">null</span>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  `
+
+  const getPostData = () => {
+    $.ajax({
+      // url: 'https://oohoserver.000webhostapp.com/fetch.php',
+      url: 'https://81021100-52-20180323161333.webstarterz.com/fetchTopic.php',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        console.log(data)
+        let info = '';
+        data.forEach((d) => info+=getElementCardFunc(d.id, d.title, d.viewCount, d.startTravel))
+        document.getElementById('elementCard').innerHTML = info
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        if (xhr.status <= 0) {
+          let status = confirm('Are you make sure trust certification!! Browser')
+          if (status) {
+            window.location.href = 'https://81021100-52-20180323161333.webstarterz.com/fetchTopic.php'
+          } else {
+            alert('You can not see the content because browser of you are stuck not certification "TRUST CERTIFICATION" please')
+          }
+        }
+      }
+    })
+    .always((jqXHROrData, textStatus, jqXHROrErrorThrown) =>    {
+      console.log(`In completion: textStatus is: ${textStatus}`);
+    })
   }
 </script>
