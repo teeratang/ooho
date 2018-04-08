@@ -497,7 +497,7 @@
   const loaddataset = () => {
     $.ajax({
       // url: 'https://oohoserver.000webhostapp.com/fetch.php',
-      url: 'https://81021100-52-20180323161333.webstarterz.com/fetchTopic.php',
+      url: 'http://81021100-52-20180323161333.webstarterz.com/fetchTopic.php',
       type: 'GET',
       dataType: 'json',
       success: function(data) {
@@ -511,6 +511,19 @@
         getElement('createDateID').innerHTML = arr['createDate']
         getElement('viewCountID').innerHTML = arr['viewCount']
       },
-    });
+      error: function (xhr, ajaxOptions, thrownError) {
+        if (xhr.status <= 0) {
+          let status = confirm('Are you make sure trust certification!! Browser')
+          if (status) {
+            window.location.href = 'https://81021100-52-20180323161333.webstarterz.com/fetchTopic.php'
+          } else {
+            alert('You can not see the content because browser of you are stuck not certification "TRUST CERTIFICATION" please')
+          }
+        }
+      }
+    })
+    .always((jqXHROrData, textStatus, jqXHROrErrorThrown) =>    {
+      console.log(`In completion: textStatus is: ${textStatus}`);
+    })
   }
 </script>
