@@ -22,7 +22,7 @@
         <nav class="navbar">
           <div class="container">
             <div class="navbar-brand">
-              <a class="navbar-item hover-none-style">
+              <a class="navbar-item hover-none-style" href="../../index.html">
                 <img src="../../images/icon/logo-index.png" alt="Logo" style="width: 83px; margin-left: -12px;">
               </a>
               <span class="navbar-burger burger" data-target="navbarMenuHeroB">
@@ -162,7 +162,7 @@
           <div class="columns">
             <div class="column">
               <div class="content" style="text-align: center">
-                <button class="tooltip dark-blue colorWhite" style="width:100%;cursor: pointer;font-size: 20px;">
+                <button class="tooltip dark-blue colorWhite" onClick="location.href='../backendScreen/backend.html'" style="width:100%;cursor: pointer;font-size: 20px;">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>  <b>Write</b> Travals
                 </button>
               </div>
@@ -209,6 +209,7 @@
     <Footer id="foo"></Footer>
   </body>
 </html>
+<script src="../../js/Initialize.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="../../js/helper.js"></script>
 <script type="text/javascript">
@@ -230,7 +231,7 @@
       <div class="card-content">
 
         <div class="content">
-          <h1>${title}</h1>
+          <a href="../topicScreen/topic.html#${id}"><h1 style="cursor: pointer">${title}</h1></a>
           null
           <br>
           <time datetime="2016-1-1">null</time>
@@ -251,8 +252,7 @@
 
   const getPostData = () => {
     $.ajax({
-      // url: 'https://oohoserver.000webhostapp.com/fetch.php',
-      url: 'https://81021100-52-20180323161333.webstarterz.com/fetchTopic.php',
+      url: config.connectServer.linkServ,
       type: 'GET',
       dataType: 'json',
       success: function(data) {
@@ -265,7 +265,7 @@
         if (xhr.status <= 0) {
           let status = confirm('Are you make sure trust certification!! Browser')
           if (status) {
-            window.location.href = 'https://81021100-52-20180323161333.webstarterz.com/fetchTopic.php'
+            window.location.href = config.connectServer.linkServ
           } else {
             alert('You can not see the content because browser of you are stuck not certification "TRUST CERTIFICATION" please')
           }
