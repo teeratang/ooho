@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Prompt:200,300,400,500,700">
     <!-- Bulma Version 0.6.0 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.css">
     <!-- slider version 2.3.1 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/PgwSlider/2.3.1/pgwslider.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/theme.css">
     <link rel="stylesheet" href="../../css/uploadfile.css">
@@ -17,6 +18,23 @@
 
     <!-- cdeditor 4.9.0 -->
     <script src="https://cdn.ckeditor.com/4.9.0/full-all/ckeditor.js"></script>
+    <style>
+        img {
+          max-width: 100%;
+        }
+  
+        #canvas {
+          height: 600px;
+          width: 600px;
+          background-color: #ffffff;
+          cursor: default;
+          border: 1px solid black;
+        }
+  
+        #result {
+          widows: 30px;
+        }
+      </style>
   </head>
   <body>
     <section class="hero is-info is-large">
@@ -95,18 +113,26 @@
         </nav>
       </div>
 
+      
+
       <div class="wrapperUpload">
         <div class="container">
-            <div class="uploadImage">
-                <label for="file-input">
-                    <img src="../../images/backend/upload.png" alt="">
-                </label>
-                <input type="file" id="file-input" class="fieldUpload" />
-            </div>
-            <p class="fontNow">Select the size should be greater than 1680px high-definition large,<br/> such as the original camera</p>
+          <div class="panel" style="width: 10.333%;">
+            <label for="fileInput">
+              <form action="" class="image-select" data-droppable="">
+                <input id="fileInput" type="file" data-droppable-input=""/>
+                <i class="fa fa-camera fa-2x image-select__icon"></i>
+                <div class="image-select__message"></div>
+                <div id="picture"></div>
+                <div class="bg-image aspect-square"
+                  style="background-image: url('../../images/blog/register.png');" data-droppable-image=""></div>
+              </form>
+            </label>
+          </div>
+          <p class="fontNow">Select the size should be greater than 1680px high-definition large,<br/> such as the original camera</p>
         </div>
 
-        <div class="container" style="position: relative; height: 186px">
+        <div class="container" style="position: relative; height: 103px">
             <input id="fieldInput" type="text" placeholder="Write Main Title ..." value="โคโยตี้ไลท์ รวมมิตร โปรเจ็กต์เบลอแอปเปิล"/>
         </div>
       </div>
@@ -354,18 +380,35 @@
         </div>
         <div class="marginฺBottom200"></div>
     </section>
+
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+          <input type="button" id="btnCrop" value="Crop" />
+          <!-- <input type="button" id="btnRestore" value="Restore" /> -->
+
+          <div>
+            <canvas id="canvas">
+              Your browser does not support the HTML5 canvas element.
+            </canvas>
+          </div>
+        
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
   </body>
 </html>
 
 <script src="../../js/Initialize.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="../../js/helper.js"></script>
-
 <!-- emoji icon -->
 <script src="../../lib/emojiComponent.js"></script>
-
 <!-- resize -->
 <script src="https://static.tumblr.com/maopbtg/oimmiw86r/jquery.autosize-min.js"></script>
+<!-- image chooser -->
+<!-- <script async type="text/javascript" src="../../js/imagechooser.js"></script> -->
+<!-- jQuery is cropper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js"></script>
 
 <script type="text/javascript">
   CKEDITOR.disableAutoInline = true;
@@ -477,3 +520,58 @@
     });
   }
 </script>
+<script>
+    var canvas  = $("#canvas"),
+        context = canvas.get(0).getContext("2d"),
+        $result = $('#result');
+        $picture = $('#picture');
+    
+    $('#fileInput').on( 'change', function(){
+      $(".modal").addClass("is-active");
+        if (this.files && this.files[0]) {
+          if ( this.files[0].type.match(/^image\//) ) {
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+               var img = new Image();
+               img.onload = function() {
+                 context.canvas.height = img.height;
+                 context.canvas.width  = img.width;
+                 context.drawImage(img, 0, 0);
+                 var cropper = canvas.cropper({
+                   aspectRatio: 1 / 1
+                  //  aspectRatio: 16 / 9
+                 });
+                 $('#btnCrop').click(function() {
+                    // Get a string base 64 data url
+                    alert('Cropper image success')
+                    var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png");
+                    $picture.html(`<img src="${croppedImageDataURL}" />`)
+                    $('.bg-image').remove()
+                    // $result.html($('<img>').attr('src', croppedImageDataURL))
+                    // $result.append( $('<img>').attr('src', croppedImageDataURL) );
+    
+                    $(".modal").addClass("is-active");
+                    
+                 });
+                //  $('#btnRestore').click(function() {
+                //    canvas.cropper('reset');
+                //    $result.empty();
+                //  });
+               };
+               img.src = evt.target.result;
+            };
+            reader.readAsDataURL(this.files[0]);
+          }
+          else {
+            alert("Invalid file type! Please select an image file.");
+          }
+        }
+        else {
+          alert('No file(s) selected.');
+        }
+    });
+    
+    $(".modal-close").click(function() {
+       $(".modal").removeClass("is-active");
+    });
+    </script>
